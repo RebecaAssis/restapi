@@ -19,5 +19,7 @@ db.once('open', () => console.log('Database connected!'));
 // Carregar/Aceitar o padrão json, pois vamos uilizar uma REST APi
 app.use(express.json());
 
+const subscribersRouter = require('./routes/subscribers');
+app.use('/subscribers', subscribersRouter);
 
 app.listen(3000, () => console.log('Server running'));
