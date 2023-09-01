@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-
+    res.send('REST API ok!');
 });
 
 router.get('/:id', (req, res) => {
