@@ -1,2 +1,11 @@
 ### acessando via GET
 GET http://localhost:3000/subscribers
+###
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "userName": "Rebeca Oliveira",
+    "userChannel": "hcodeBrasil"
+}
+###
