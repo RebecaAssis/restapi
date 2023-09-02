@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Subscriber = require('../models/subscriber');
-const subscriber = require('../models/subscriber');
 
 router.get('/', async (req, res) => {
     try {
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', getSubscriber, (req, res) => {
-
+    res.json(res.subscriber);
 });
 
 router.post('/', async (req, res) => {
@@ -34,16 +33,21 @@ router.patch('/:id', getSubscriber, (req, res) => {
 
 });
 
-router.delete('/:id', getSubscriber, (req, res) => {
-
+router.delete('/:id', getSubscriber, async (req, res) => {
+    try {
+        await res.subscriber.remove;
+        res.json({message: 'Subscriber was deleted!'});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
 });
 
 // middleware para verificar se o id existe no banco de dados
 async function getSubscriber(req, res, next) {
     try {
-        const subscriber = await Subscriber.findById(req.params.id);
+        subscriber = await Subscriber.findById(req.params.id);
         
-        if(!subscriber) {
+        if(subscriber == null) {
             return res.status(404).json({message: 'Subscriber not found.'});
         }
     } catch (error) {
@@ -51,6 +55,7 @@ async function getSubscriber(req, res, next) {
     }
 
     res.subscriber = subscriber;
+    next();
 }
 
 // é necesário exportar para que seja acessado a partir do nosso
