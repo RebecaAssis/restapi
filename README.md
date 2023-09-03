@@ -10,7 +10,7 @@ Este projeto consiste na construção de uma REST API, para permitir a comunica�
 4. Mogoose
 
 **Configuração do ambiente**
-1. Instalação do NodeJS
+1. Instalação do NodeJS:
 <https://nodejs.org/en>
 
 Agora, dentro do diretório da sua aplicação, execute o comando abaixo para criar um arquivo _package.json_:
